@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-web-server-ingress
+  namespace: {{ .Values.namespace }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ .Release.Name }}-deployment
+                port:
+                  number: {{ .Values.ingress.backendPort }}
+
+#curl -sfL https://get.k3s.io | K3S_URL=https://10.0.2.15:6443 K3S_TOKEN="K10c32fc1dbc6fc8a86542e46b4924f5e7764de629061e2cfeb3ab878a8751d5296::server:ea11fb137870e21b2bccb4d705d72c21" sh -
+#curl -sfL https://get.k3s.io | K3S_URL=https://10.12.1.40:6443 K3S_TOKEN="K173832c8dd5a175bf2123d840ad491850199cbd19309ab3b37827047cdd6319b04::server:faddf0a734d338cd66d4ab19fb4bed73" sh -
+
+
+#curl -sfL https://get.k3s.io | K3S_URL=https://10.0.2.15:6443 K3S_TOKEN="K10c32fc1dbc6fc8a86542e46b4924f5e7764de629061e2cfeb3ab878a8751d5296::server:ea11fb137870e21b2bccb4d705d72c21" sh -

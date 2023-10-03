@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-apache-configmap
+  namespace: {{ .Values.namespace }}
+data:
+  index.html: | 
+    <html>
+    <head>
+      <title>Task 3 oct frontend</title>
+    </head>
+    <body>
+      <h1> hostname - maybe value din values.yaml </h1>
+      <h1> ip a </h1>
+    </body>
+    </html>

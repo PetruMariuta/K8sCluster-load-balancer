@@ -1,0 +1,9 @@
+Port 6443 e folosit pt k8s doar pt master
+Config haproxy pt agent de cautat---
+2 front si backend, pt port 80 si 443 
+
+Si port forward si din tunneling si din mozila
+
+Adaugat ce e in /etc/hosts si pe cele 2 vm-uri
+
+Apache2 cu helm chart sa arate hostname si ip ale containerului in care ruleaza

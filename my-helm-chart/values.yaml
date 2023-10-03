@@ -1,0 +1,10 @@
+namespace: namespace3
+replicaCount: 1
+image:
+  repository: petrumariuta/apache-web:latest
+  tag: latest
+configMapName: static-page-configmap
+ingress:
+  host: namespace3.local
+  backendService: web-server-deployment-namespace3
+  backendPort: 80

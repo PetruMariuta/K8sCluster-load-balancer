@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: web-server 
+  template:
+    metadata:
+      labels:
+        app: web-server  # Label applied to pods
+    spec:
+      containers:
+        - name: web-server
+          image: {{ .Values.image.repository }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: index-html
+              mountPath: /var/www/html/index.html
+              subPath: index.html
+      volumes:
+        - name: index-html
+          configMap:
+            name: {{ .Release.Name }}-apache-configmap
+            items:
+             - key: index.html
+               path: index.html
