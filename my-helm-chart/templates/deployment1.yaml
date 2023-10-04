@@ -22,6 +22,15 @@ spec:
             - name: index-html
               mountPath: /var/www/html/index.html
               subPath: index.html
+          env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
       volumes:
         - name: index-html
           configMap:

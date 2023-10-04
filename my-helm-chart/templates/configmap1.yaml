@@ -10,7 +10,7 @@ data:
       <title>Task 3 oct frontend</title>
     </head>
     <body>
-      <h1> hostname - maybe value din values.yaml </h1>
-      <h1> ip a </h1>
+      <h1> Hostname - {{.Values.podName}} </h1>
+      <h1> IP - {{ .Values.podIP }}</h1>
     </body>
     </html>
