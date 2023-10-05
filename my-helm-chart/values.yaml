@@ -1,7 +1,7 @@
 namespace: namespace3
 replicaCount: 1
 image:
-  repository: petrumariuta/apache-web:latest
+  repository: ubuntu/apache2:latest
   tag: latest
 configMapName: static-page-configmap
 ingress:

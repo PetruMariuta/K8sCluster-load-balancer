@@ -7,34 +7,28 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: web-server 
+      app: web-server
   template:
     metadata:
       labels:
-        app: web-server  # Label applied to pods
+        app: web-server
     spec:
       containers:
         - name: web-server
           image: {{ .Values.image.repository }}
           ports:
             - containerPort: 80
+          command: ["/bin/bash"]
+          args: ["/tmp/scripts/index.sh"]
           volumeMounts:
             - name: index-html
-              mountPath: /var/www/html/index.html
-              subPath: index.html
-          env:
-          - name: MY_POD_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          - name: MY_POD_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
+#              mountPath: /var/www/html/index.html
+              mountPath: /tmp/scripts/
+#              subPath: index.html              
       volumes:
         - name: index-html
           configMap:
             name: {{ .Release.Name }}-apache-configmap
             items:
-             - key: index.html
-               path: index.html
+              - key: index.sh
+                path: index.sh
